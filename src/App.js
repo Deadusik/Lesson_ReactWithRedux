@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { addCashAction, getCashAction } from "./store/cashReducer";
-import { addCustomerAction, removeCustomerAction } from "./store/customerReducer";
-
+import { addCustomerAction, addManyCustomersAction, removeCustomerAction } from "./store/customerReducer";
+import { fetchCustomers } from "./asyncActions/customers";
 
 function App() {
   const dispatch = useDispatch()
@@ -35,7 +35,8 @@ function App() {
         <button onClick={() => addCash(Number(prompt('How much cash do you want to add?')))}>Add money</button>
         <button onClick={() => removeCash(Number(prompt('How much cash do you want to remove?')))}>Remove money</button>
         <hr />
-        <button onClick={() => addCustomer(prompt('How much cash do you want to add?'))}>Add client</button>
+        <button onClick={() => addCustomer(prompt('What is client name?'))}>Add client</button>
+        <button onClick={() => dispatch(fetchCustomers())}>Add clients from server</button>
       </div>
       {
         customers.length ?
